@@ -14,3 +14,12 @@ export async function UploadTodo(dat: z.infer<typeof FormSchema>) {
   });
   revalidatePath("/");
 }
+
+export async function DeleteDo(task: string) {
+  await prismadb.todo.deleteMany({
+    where: {
+      Task: task,
+    },
+  });
+  revalidatePath("/");
+}
