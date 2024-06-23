@@ -35,7 +35,7 @@ const CompletedTask = ({ task }: Props) => {
   };
   return (
     <div className="flex w-full h-12 rounded-lg bg-green-600 m-2 items-center justify-around">
-      <strike>Task: {task.Task}</strike>
+      <s>Task: {task.Task}</s>
       <div className="bg-green-800 rounded-lg m-2 h-10 p-2 flex">
         <h1 className="font-bold text-md">Task is completed</h1>
         <CircleCheckBig className="ml-3" size={25} />
