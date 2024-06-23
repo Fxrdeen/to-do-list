@@ -38,3 +38,12 @@ export async function markAsComp(task: string, userId: string) {
   });
   revalidatePath("/");
 }
+
+export async function DeleteAll(userId: string) {
+  await prismadb.todo.deleteMany({
+    where: {
+      userId: userId,
+    },
+  });
+  revalidatePath("/");
+}
