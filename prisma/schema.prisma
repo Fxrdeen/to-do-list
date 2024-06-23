@@ -11,4 +11,5 @@ model Todo {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   userId  String 
   Task    String
+  Completed Boolean
 }

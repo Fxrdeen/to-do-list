@@ -10,15 +10,30 @@ export async function UploadTodo(dat: z.infer<typeof FormSchema>) {
     data: {
       Task: dat.todo,
       userId: dat.userId,
+      Completed: false,
     },
   });
   revalidatePath("/");
 }
 
-export async function DeleteDo(task: string) {
+export async function DeleteDo(task: string, userId: string) {
   await prismadb.todo.deleteMany({
     where: {
       Task: task,
+      userId: userId,
+    },
+  });
+  revalidatePath("/");
+}
+
+export async function markAsComp(task: string, userId: string) {
+  await prismadb.todo.updateMany({
+    where: {
+      Task: task,
+      userId: userId,
+    },
+    data: {
+      Completed: true,
     },
   });
   revalidatePath("/");

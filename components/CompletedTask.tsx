@@ -1,14 +1,14 @@
 "use client";
-import { MoreVertical, Trash } from "lucide-react";
-import { Button } from "./ui/button";
+import { CircleCheckBig, MoreVertical, Trash } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
+import { DeleteDo } from "@/actions";
 import { useToast } from "./ui/use-toast";
-import { DeleteDo, markAsComp } from "@/actions";
 
 type Props = {
   task: {
@@ -19,20 +19,8 @@ type Props = {
   };
 };
 
-const TaskCard = ({ task }: Props) => {
+const CompletedTask = ({ task }: Props) => {
   const { toast } = useToast();
-  const markAsComplete = async () => {
-    try {
-      await markAsComp(task.Task, task.userId);
-      toast({ title: "Congratulations for completing your task" });
-    } catch (error) {
-      toast({
-        title: "Some Error Occured while Updating todo",
-        variant: "destructive",
-      });
-      console.log(error);
-    }
-  };
   const onDelete = async () => {
     try {
       await DeleteDo(task.Task, task.userId);
@@ -46,11 +34,12 @@ const TaskCard = ({ task }: Props) => {
     }
   };
   return (
-    <div className="flex w-full h-12 rounded-lg bg-primary/30 m-2 items-center justify-around">
-      <div className="flex flex-col">Task: {task.Task}</div>
-      <Button size={"default"} variant={"outline"} onClick={markAsComplete}>
-        Mark As Complete
-      </Button>
+    <div className="flex w-full h-12 rounded-lg bg-green-600 m-2 items-center justify-around">
+      <strike>Task: {task.Task}</strike>
+      <div className="bg-green-800 rounded-lg m-2 h-10 p-2 flex">
+        <h1 className="font-bold text-md">Task is completed</h1>
+        <CircleCheckBig className="ml-3" size={25} />
+      </div>
       <div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -69,4 +58,4 @@ const TaskCard = ({ task }: Props) => {
   );
 };
 
-export default TaskCard;
+export default CompletedTask;
