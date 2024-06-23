@@ -1,16 +1,5 @@
 "use client";
 import { DeleteAll } from "@/actions";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "./ui/alert-dialog";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
 import { useUser } from "@clerk/nextjs";
